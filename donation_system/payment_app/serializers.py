@@ -67,3 +67,15 @@ class DonorDonationsHistorySerializer(serializers.ModelSerializer):
             last_name = donation.receiver.last_name
 
         return f"{first_name} {last_name}"
+
+
+class ReceiverDonorsListSerializer(serializers.ModelSerializer):
+    donated_at = serializers.DateTimeField(source="created_at", format="%Y-%m-%d %H:%M")
+    donor_details = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Donation
+        fields = ("id", "receiver", "donated_at", "donor_details")
+
+    def get_donor_details(self, donation: Donation):
+        return UserDetailSerializer(donation.donor).data
