@@ -10,6 +10,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG', default=True)
 
+AUTH_TOKEN = env('AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = env('TWILIO_PHONE_NUMBER')
+Account_SID = env('Account_SID')
+
 ALLOWED_HOSTS = []
 
 # ------------------------------ Application definition ------------------------------
@@ -49,6 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'donation_system.urls'
+
+AUTH_USER_MODEL = 'account_management.CustomUser'
 
 TEMPLATES = [
     {

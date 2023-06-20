@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from account_management.serializers import DonationReceiversListSerializer, LoginSerializer
+from account_management.serializers import DonationReceiversListSerializer, LoginSerializer, UserSignUpSerializer
 
 User = get_user_model()
 
@@ -26,3 +26,9 @@ class DonationReceiversListView(ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return User.objects.exclude(id=user.id)
+
+
+class UserSignUpView(CreateAPIView):
+    permission_classes = []
+    serializer_class = UserSignUpSerializer
+    queryset = User.objects.all()
