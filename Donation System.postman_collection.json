@@ -1,0 +1,732 @@
+{
+	"info": {
+		"_postman_id": "b908d644-e499-4876-9f68-e6cbe10f5b49",
+		"name": "Donation System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Payment App",
+			"item": [
+				{
+					"name": "Donate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"description": "Authorization Token for Authentication",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 130,\n    \"receiver\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/donations/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"donations",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Donate details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"description": "Authorization Token for Authentication",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 300,\n    \"receiver\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/donations/:doation_id/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"donations",
+								":doation_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "doation_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Donation History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"description": "Authorization Token for Authentication",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 300,\n    \"receiver\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/donations/donation_history/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"donations",
+								"donation_history",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Donators List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"description": "Authorization Token for Authentication",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 300,\n    \"receiver\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/donations/donation_history/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"donations",
+								"donation_history",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account Management",
+			"item": [
+				{
+					"name": "Receiver List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"description": "Authorization Token for Authentication",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/donation-receivers/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"donation-receivers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.environment.set(\"TOKEN\", `Token ${response.token}`)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/login/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTP Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.environment.set(\"TOKEN\", `Token ${response.token}`)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact_number\": \"7984885624\",\n    \"otp\": \"944313\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/otp-login/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"otp-login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.environment.set(\"TOKEN\", `Token ${response.token}`)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"mohit4\",\n    \"password\": \"password123\",\n    \"first_name\": \"mohit\",\n    \"last_name\": \"mohit\",\n    \"contact_number\": \"7984885624\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/sign-up/",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sign-up",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Razorpay Client",
+			"item": [
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Create Order",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"amount\": 100,\n  \"currency\": \"INR\",\n  \"receipt\": \"Receipt no. 1\",\n  \"notes\": {\n    \"notes_key_1\": \"Tea, Earl Grey, Hot\",\n    \"notes_key_2\": \"Tea, Earl Grey… decaf.\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/orders",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Orders",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/orders",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Order Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/orders/:order_id/",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"orders",
+										":order_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "order_id",
+											"value": "order_M48MSgHI9GVjhW"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Single Order Payments",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/orders/:order_id/payments/",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"orders",
+										":order_id",
+										"payments",
+										""
+									],
+									"variable": [
+										{
+											"key": "order_id",
+											"value": "order_M48MSgHI9GVjhW"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payments",
+					"item": [
+						{
+							"name": "Payment List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/payments/",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Capture Payment",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/payments/{pay_id}/capture",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"payments",
+										"{pay_id}",
+										"capture"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Order Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/orders/:order_id/",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"orders",
+										":order_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "order_id",
+											"value": "order_M48MSgHI9GVjhW"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Single Order Payments",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "SVIFbXAgaAjNiV7qnLIXeAXV",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rzp_test_PpzeECLdxnZ6si",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{RazorPayDomain}}/orders/:order_id/payments/",
+									"host": [
+										"{{RazorPayDomain}}"
+									],
+									"path": [
+										"orders",
+										":order_id",
+										"payments",
+										""
+									],
+									"variable": [
+										{
+											"key": "order_id",
+											"value": "order_M48MSgHI9GVjhW"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

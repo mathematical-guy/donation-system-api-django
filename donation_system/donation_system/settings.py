@@ -13,6 +13,10 @@ DEBUG = env('DEBUG', default=True)
 key_id = env('key_id', default="")
 key_secret = env('key_secret', default="")
 
+AUTH_TOKEN = env('AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = env('TWILIO_PHONE_NUMBER')
+Account_SID = env('Account_SID')
+
 ALLOWED_HOSTS = []
 
 # ------------------------------ Application definition ------------------------------
@@ -52,6 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'donation_system.urls'
+
+AUTH_USER_MODEL = 'account_management.CustomUser'
 
 TEMPLATES = [
     {
