@@ -12,7 +12,6 @@ DEBUG = env('DEBUG', default=True)
 
 ALLOWED_HOSTS = []
 
-
 # ------------------------------ Application definition ------------------------------
 
 INSTALLED_APPS = [
@@ -31,7 +30,10 @@ THIRD_PARTY_APPS = [
     'django_extensions',
 ]
 
-USER_APPS = []
+USER_APPS = [
+    'lib',
+    'payment_app',
+]
 
 INSTALLED_APPS = INSTALLED_APPS + THIRD_PARTY_APPS + USER_APPS
 
@@ -72,7 +74,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -102,3 +103,20 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework.authentication.TokenAuthentication',
+    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ]
+}
