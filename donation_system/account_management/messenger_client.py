@@ -16,5 +16,5 @@ class MessageHandler:
         message = client.messages.create(
             body=f'Your OTP is: {self.otp}',
             from_=f'{TWILIO_PHONE_NUMBER}',
-            to=self.phone_number,
+            to=f"+91{self.phone_number}",
         )

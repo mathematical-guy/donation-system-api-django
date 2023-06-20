@@ -70,3 +70,33 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         MessageHandler(otp=otp, phone_number=contact_number).send_otp_via_message()
 
         return user
+
+
+class OTPLoginSerializer(serializers.Serializer):
+    contact_number = serializers.CharField()
+    otp = serializers.CharField()
+
+    def validate(self, attrs):
+        contact_number = attrs.get("contact_number")
+        otp = attrs.pop("otp")
+
+        try:
+            user = User.objects.get(contact_number=contact_number, is_otp_used=False)
+        except User.DoesNotExist:
+            raise serializers.ValidationError(
+                {"contact_number": f"User with this {contact_number} number is not registered"}
+            )
+
+        if otp != user.otp:
+            raise serializers.ValidationError({"otp": "Please provide valid OTP"})
+
+        token, created = Token.objects.get_or_create(user=user)
+
+        user.is_otp_used = True
+        user.save()
+
+        data = UserDetailSerializer(instance=user).data
+
+        data["token"] = token.key
+
+        return data
