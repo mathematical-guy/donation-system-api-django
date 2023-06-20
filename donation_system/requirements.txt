@@ -20,3 +20,5 @@ sqlparse==0.4.4
 typing-extensions==4.6.3
 vine==5.0.0
 wcwidth==0.2.6
+
+Faker~=18.10.1
