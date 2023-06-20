@@ -10,6 +10,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG', default=True)
 
+key_id = env('key_id', default="")
+key_secret = env('key_secret', default="")
+
 ALLOWED_HOSTS = []
 
 # ------------------------------ Application definition ------------------------------
